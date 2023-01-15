@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+ {% load static %}
+
+<head>
+
+    {% include "./static-layout.html" %}
+
+
+
+    <div class="login-form-bg h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-xl-6">
+                    <div class="form-input-content">
+                        <div class="card login-form mb-0">
+                            <div class="card-body pt-5">
+                                
+                                    <a class="text-center" href={% url "register_page" %} > <h4> ثبت نام در اتوماسیون نوراد </h4>
+                                    </a>
+        
+                                <form class="mt-5 mb-5 login-input" method="POST" action={%  url "complete_signup-page"  id %} >
+                                    <div class="form-group">
+                                        {% csrf_token %}
+                                        {{ register_form.username }}
+                                        {{ register_form.username.errors }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ register_form.email }}
+                                        {{ register_form.email.errors }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ register_form.password }}
+                                        {{ register_form.password.errors }}
+                                </div>
+                                <div class="form-group">
+                                        {{ register_form.confirm_password }}
+                                        {{ register_form.confirm_password.errors }}
+                                </div>
+                                    <button class="btn login-form__btn submit w-100">ثبت نام </button>
+                                </form>
+                                    <p class="mt-5 login-form__footer">جساب کاربری دارید؟! <a href={% url "login_page" %} class="text-primary"> همین حالا</a> وارد شوید  </p>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{#    </div>#}
+    
+
+    
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src={% static "plugins/common/common.min.js" %}></script>
+    <script src={% static "js/custom.min.js" %}></script>
+    <script src={% static "js/settings.js" %}></script>
+    <script src={% static "js/gleek.js" %}></script>
+    <script src={% static "js/styleSwitcher.js" %}></script>
+</body>
+</html>
+
+
+
+
+

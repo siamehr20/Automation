@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+from django.conf.global_settings import AUTH_USER_MODEL
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,11 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'testapp'
-    'Department.apps.DepartmentConfig',
-    'Employee','Task',
-    'Financial','Ticket'
-    'Manager','reservation'
+    'Employee','SecureBox','Automation',
+    'Financial','Ticket', 'Department',
+    'Manager','Front','viewflow`'
+
 ]
 
 MIDDLEWARE = [
@@ -78,20 +79,23 @@ WSGI_APPLICATION = 'Automation.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
 
+AUTH_USER_MODEL = 'Employee.Employee'
+
+DATABASES = {
     'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'Automation',
-            'USER': 'siamehr',
-            'PASSWORD': '12Siavash',
-            'HOST': 'localhost',
-            'PORT': '',
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+
+    # 'default': {
+    #         'ENGINE': 'django.db.backends.postgresql',
+    #         'NAME': 'Automation',
+    #         'USER': 'siamehr',
+    #         'PASSWORD': '12Siavash',
+    #         'HOST': 'localhost',
+    #         'PORT': '',
+    #     }
 }
 
 
@@ -129,11 +133,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT =os.path.join(BASE_DIR , 'static/')
+STATIC_URL = '/static/'
 
-MEDIA_URL ='media/'
-MEDIA_ROOT = os.path.join(BASE_DIR , 'media/')
+STATICSFILES_DIRS = [
+     BASE_DIR / 'static',
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+# MEDIA_URL ='media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR , 'media/')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
